@@ -2,18 +2,21 @@
 
 import { useState } from "react";
 import { useRouter } from "next/navigation";
+import { useDispatch } from "react-redux";
+import { login } from "@/redux/slices/authSlice";
 
 export default function LoginPage() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const router = useRouter();
+  const dispatch = useDispatch();
 
   const handleLogin = () => {
     // Simple validation
     if (!email || !password) return;
 
-    // Store token
-    localStorage.setItem("token", "my-secret-token");
+    // Store token in Redux
+    dispatch(login({ token: "my-secret-token", email }));
 
     // Redirect after login
     router.push("/");

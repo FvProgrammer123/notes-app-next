@@ -2,14 +2,28 @@
 
 import { useRouter } from "next/navigation";
 import { useNotes, useDeleteNote } from "@/hooks/useNotes";
+import { useDispatch, useSelector } from "react-redux";
+import { logout } from "@/redux/slices/authSlice";
+import { RootState } from "@/redux/store";
 
 export default function Home() {
   const { data: notes = [] } = useNotes();
   const { mutate } = useDeleteNote();
   const router = useRouter();
+  const dispatch = useDispatch();
+  const { isAuthenticated } = useSelector((state: RootState) => state.auth);
 
   const addNotePage = () => {
     router.push("add");
+  };
+
+  const handleLogout = () => {
+    dispatch(logout());
+    router.push("/login");
+  };
+
+  const handleLogin = () => {
+    router.push("/login");
   };
 
   return (
@@ -18,13 +32,31 @@ export default function Home() {
       <div className="w-full max-w-2xl flex justify-between items-center mb-6">
         <h1 className="text-3xl font-bold text-gray-800">📝 Notes App</h1>
 
-        <button
-          onClick={addNotePage}
-          className="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-lg shadow"
-        >
-          + Add Note
-        </button>
-        {/* Logout button will be added here */}
+        <div className="flex gap-2">
+          {isAuthenticated ? (
+            <>
+              <button
+                onClick={addNotePage}
+                className="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-lg shadow"
+              >
+                + Add Note
+              </button>
+              <button
+                onClick={handleLogout}
+                className="bg-red-600 hover:bg-red-700 text-white px-4 py-2 rounded-lg shadow"
+              >
+                Logout
+              </button>
+            </>
+          ) : (
+            <button
+              onClick={handleLogin}
+              className="bg-green-600 hover:bg-green-700 text-white px-4 py-2 rounded-lg shadow"
+            >
+              Login
+            </button>
+          )}
+        </div>
       </div>
 
       {/* Notes List */}
