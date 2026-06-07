@@ -24,6 +24,7 @@ export default function Home() {
         >
           + Add Note
         </button>
+        {/* Logout button will be added here */}
       </div>
 
       {/* Notes List */}
