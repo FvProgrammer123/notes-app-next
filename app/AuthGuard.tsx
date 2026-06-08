@@ -33,6 +33,8 @@ export default function AuthGuard({ children }: Props) {
       }
     } catch (error) {
       // Silent error handling
+      console.error("AuthGuard error:", error);
+      router.replace("/");
     }
 
   }, [pathname, router]);

@@ -50,12 +50,20 @@ export default function Home() {
               </button>
             </>
           ) : (
-            <button
-              onClick={handleLogin}
-              className="bg-green-600 hover:bg-green-700 text-white px-4 py-2 rounded-lg shadow"
-            >
-              Login
-            </button>
+            <>
+              <button
+                onClick={addNotePage}
+                className="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-lg shadow"
+              >
+                + Add Note
+              </button>
+              <button
+                onClick={handleLogin}
+                className="bg-green-600 hover:bg-green-700 text-white px-4 py-2 rounded-lg shadow"
+              >
+                Login
+              </button>
+            </>
           )}
         </div>
       </div>
