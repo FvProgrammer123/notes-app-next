@@ -17,7 +17,7 @@ export default function LoginPage() {
 
     // Store token in Redux
     dispatch(login({ token: "my-secret-token", email }));
-
+    localStorage.setItem("token", "my-secret-token");
     // Redirect after login
     router.push("/");
   };
