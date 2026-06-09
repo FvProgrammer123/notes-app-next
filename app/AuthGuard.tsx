@@ -15,8 +15,9 @@ export default function AuthGuard({ children }: Props) {
     try {
       const token = localStorage.getItem("token");
       const publicRoutes = ["/login"];
+      const commonRoutes = ['/', '/home']
       const isPublic = publicRoutes.includes(pathname);
-      const commonRoutes = ['/', 'home']
+      
 
       if (commonRoutes.includes(pathname)) {
         return;
