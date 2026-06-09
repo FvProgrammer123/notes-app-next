@@ -14,7 +14,7 @@ export default function Home() {
   const { isAuthenticated } = useSelector((state: RootState) => state.auth);
 
   const addNotePage = () => {
-    router.push("add");
+    router.push("/add");
   };
 
   const handleLogout = () => {
